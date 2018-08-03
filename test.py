@@ -32,7 +32,8 @@ def encrypt(url, ts, method):
     raw = url.replace("https://picaapi.picacomic.com/", "") + str(ts) + uuid + method + api_key
     raw = raw.lower()
     hc = hmac.new(secret_key.encode(), digestmod=hashlib.sha256)
-    return hc.update(raw.encode())
+    hc.update(raw.encode())
+    return hc.hexdigest()
 
 
 if __name__ == "__main__":
